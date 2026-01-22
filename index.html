@@ -15,6 +15,16 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
+    <style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </head>
 
 <body class="antialiased selection:bg-blue-500/20 selection:text-white overflow-x-hidden">
@@ -240,9 +250,37 @@
             </div>
             <div class="flex gap-4 md:gap-6 items-center">
                 <button onclick="scrollToPricing()"
-                    class="uppercase hover:from-blue-700 hover:to-blue-800 transition-all duration-300 cursor-pointer text-[10px] md:text-xs font-medium text-white tracking-widest bg-gradient-to-r from-blue-600 to-blue-700 rounded-full px-4 md:px-6 py-2 md:py-3 shadow-lg whitespace-nowrap">
+                    class="hidden md:block uppercase hover:from-blue-700 hover:to-blue-800 transition-all duration-300 cursor-pointer text-[10px] md:text-xs font-medium text-white tracking-widest bg-gradient-to-r from-blue-600 to-blue-700 rounded-full px-4 md:px-6 py-2 md:py-3 shadow-lg whitespace-nowrap">
                     Start Your Free Trial Now
                 </button>
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-slate-900 p-2">
+                    <iconify-icon icon="solar:menu-dots-bold" class="text-3xl"></iconify-icon>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="lg:hidden fixed inset-0 bg-white z-[100] translate-x-full transition-transform duration-500 ease-in-out">
+            <div class="flex flex-col h-full p-6">
+                <div class="flex items-center justify-between mb-12">
+                    <img src="assets/images/Gradnext_logo_-_Blue_2_-1768597551386.png" alt="gradNext Logo"
+                        class="h-8 w-auto">
+                    <button onclick="toggleMobileMenu()" class="text-slate-900 p-2">
+                        <iconify-icon icon="solar:close-circle-bold" class="text-3xl"></iconify-icon>
+                    </button>
+                </div>
+                <div class="flex flex-col gap-8 text-xl font-medium text-slate-900 serif">
+                    <a href="#features" onclick="toggleMobileMenu()">Features</a>
+                    <a href="#pricing" onclick="toggleMobileMenu()">Pricing</a>
+                </div>
+                <div class="mt-auto">
+                    <button onclick="toggleMobileMenu(); scrollToPricing()"
+                        class="w-full bg-blue-600 text-white rounded-2xl py-5 font-semibold text-lg shadow-xl">
+                        Start Your Free Trial
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
@@ -1978,7 +2016,8 @@
     </section>
 
     <!-- Feature Comparison Table -->
-    <section class="bg-gradient-to-br from-slate-50 via-blue-50 to-white pt-32 pb-32 relative border-t border-slate-200"
+    <section
+        class="bg-gradient-to-br from-slate-50 via-blue-50 to-white pt-16 md:pt-32 pb-16 md:pb-32 relative border-t border-slate-200"
         id="pricing">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
             <div class="text-center mb-16">
@@ -2007,367 +2046,370 @@
             </div>
 
             <!-- Comparison Table with Equal Column Widths -->
-            <div class="bg-white border-2 border-blue-300 rounded-3xl overflow-hidden shadow-2xl">
-                <!-- Table Header -->
-                <div class="grid grid-cols-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-                    <div class="p-4 md:p-6 lg:p-8 border-r border-blue-500">
-                        <h3 class="text-sm md:text-lg lg:text-xl font-semibold">Features</h3>
-                    </div>
-                    <div class="p-4 md:p-6 lg:p-8 text-center border-r border-blue-500">
-                        <div
-                            class="inline-block bg-slate-100/20 backdrop-blur-sm px-2 md:px-4 py-1 md:py-2 rounded-full mb-2">
-                            <span class="text-xs font-bold uppercase tracking-widest">Essential</span>
+            <div class="overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0 mb-8 scrollbar-hide">
+                <div
+                    class="min-w-[768px] md:min-w-0 bg-white border-2 border-blue-300 rounded-3xl overflow-hidden shadow-2xl">
+                    <!-- Table Header -->
+                    <div class="grid grid-cols-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                        <div class="p-4 md:p-6 lg:p-8 border-r border-blue-500">
+                            <h3 class="text-sm md:text-lg lg:text-xl font-semibold">Features</h3>
                         </div>
-                        <h3 class="text-sm md:text-base lg:text-lg font-semibold">Foundation</h3>
-                        <p id="foundation-price" class="text-base md:text-lg lg:text-xl font-bold text-white mt-2">
-                            ₹799/month</p>
-                    </div>
-                    <div class="p-4 md:p-6 lg:p-8 text-center border-r border-blue-500">
-                        <div
-                            class="inline-block bg-yellow-400 text-blue-900 px-2 md:px-4 py-1 md:py-2 rounded-full mb-2">
-                            <span class="text-xs font-bold uppercase tracking-widest">Popular</span>
-                        </div>
-                        <h3 class="text-sm md:text-base lg:text-lg font-semibold">Growth</h3>
-                        <p id="growth-price" class="text-base md:text-lg lg:text-xl font-bold text-white mt-2">
-                            ₹999/month</p>
-                    </div>
-                    <div class="p-4 md:p-6 lg:p-8 text-center">
-                        <div
-                            class="inline-block bg-green-400 text-blue-900 px-2 md:px-4 py-1 md:py-2 rounded-full mb-2">
-                            <span class="text-xs font-bold uppercase tracking-widest">Best Value</span>
-                        </div>
-                        <h3 class="text-sm md:text-base lg:text-lg font-semibold">Mastery</h3>
-                        <p id="mastery-price" class="text-base md:text-lg lg:text-xl font-bold text-white mt-2">
-                            ₹1199/month</p>
-                    </div>
-                </div>
-
-                <!-- Table Body -->
-                <div class="divide-y divide-slate-200">
-
-                    <!-- Personalized Dashboard -->
-                    <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
-                            <iconify-icon icon="solar:chart-2-linear"
-                                class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
-                            <div>
-                                <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">
-                                    Personalized Dashboard</h4>
-                                <p class="text-xs text-slate-600 mt-1 hidden md:block">Progress tracking &
-                                    analytics</p>
+                        <div class="p-4 md:p-6 lg:p-8 text-center border-r border-blue-500">
+                            <div
+                                class="inline-block bg-slate-100/20 backdrop-blur-sm px-2 md:px-4 py-1 md:py-2 rounded-full mb-2">
+                                <span class="text-xs font-bold uppercase tracking-widest">Essential</span>
                             </div>
+                            <h3 class="text-sm md:text-base lg:text-lg font-semibold">Foundation</h3>
+                            <p id="foundation-price" class="text-base md:text-lg lg:text-xl font-bold text-white mt-2">
+                                ₹799/month</p>
                         </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-slate-600 mt-2 hidden md:block">Real-time tracking</p>
+                        <div class="p-4 md:p-6 lg:p-8 text-center border-r border-blue-500">
+                            <div
+                                class="inline-block bg-yellow-400 text-blue-900 px-2 md:px-4 py-1 md:py-2 rounded-full mb-2">
+                                <span class="text-xs font-bold uppercase tracking-widest">Popular</span>
                             </div>
+                            <h3 class="text-sm md:text-base lg:text-lg font-semibold">Growth</h3>
+                            <p id="growth-price" class="text-base md:text-lg lg:text-xl font-bold text-white mt-2">
+                                ₹999/month</p>
                         </div>
-                        <div
-                            class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-blue-700 font-medium mt-2 hidden md:block">Real-time
-                                    tracking</p>
+                        <div class="p-4 md:p-6 lg:p-8 text-center">
+                            <div
+                                class="inline-block bg-green-400 text-blue-900 px-2 md:px-4 py-1 md:py-2 rounded-full mb-2">
+                                <span class="text-xs font-bold uppercase tracking-widest">Best Value</span>
                             </div>
-                        </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">Advanced
-                                    analytics</p>
-                            </div>
+                            <h3 class="text-sm md:text-base lg:text-lg font-semibold">Mastery</h3>
+                            <p id="mastery-price" class="text-base md:text-lg lg:text-xl font-bold text-white mt-2">
+                                ₹1199/month</p>
                         </div>
                     </div>
 
-                    <!-- Master Consulting Program -->
-                    <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
-                            <iconify-icon icon="solar:play-circle-bold"
-                                class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
-                            <div>
-                                <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">Master
-                                    Consulting Program</h4>
-                                <p class="text-xs text-slate-600 mt-1 hidden md:block">8 modules • 66 hours</p>
+                    <!-- Table Body -->
+                    <div class="divide-y divide-slate-200">
+
+                        <!-- Personalized Dashboard -->
+                        <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
+                                <iconify-icon icon="solar:chart-2-linear"
+                                    class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
+                                <div>
+                                    <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">
+                                        Personalized Dashboard</h4>
+                                    <p class="text-xs text-slate-600 mt-1 hidden md:block">Progress tracking &
+                                        analytics</p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-slate-600 mt-2 hidden md:block">Real-time tracking</p>
+                                </div>
+                            </div>
+                            <div
+                                class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-blue-700 font-medium mt-2 hidden md:block">Real-time
+                                        tracking</p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">Advanced
+                                        analytics</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-slate-600 mt-2 hidden md:block">All 8 modules</p>
+
+                        <!-- Master Consulting Program -->
+                        <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
+                                <iconify-icon icon="solar:play-circle-bold"
+                                    class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
+                                <div>
+                                    <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">Master
+                                        Consulting Program</h4>
+                                    <p class="text-xs text-slate-600 mt-1 hidden md:block">8 modules • 66 hours</p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-slate-600 mt-2 hidden md:block">All 8 modules</p>
+                                </div>
+                            </div>
+                            <div
+                                class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-blue-700 font-medium mt-2 hidden md:block">All 8 modules
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">All 8 modules
+                                        + bonus</p>
+                                </div>
                             </div>
                         </div>
-                        <div
-                            class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-blue-700 font-medium mt-2 hidden md:block">All 8 modules
-                                </p>
+
+                        <!-- Smart Drills & Exercises -->
+                        <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
+                                <iconify-icon icon="solar:calculator-minimalistic-linear"
+                                    class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
+                                <div>
+                                    <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">Smart
+                                        Drills & Exercises</h4>
+                                    <p class="text-xs text-slate-600 mt-1 hidden md:block">400+ interactive drills
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-slate-600 mt-2 hidden md:block">Full access</p>
+                                </div>
+                            </div>
+                            <div
+                                class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-blue-700 font-medium mt-2 hidden md:block">Full access
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">Unlimited
+                                        access</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">All 8 modules
-                                    + bonus</p>
+
+                        <!-- Expert Video Library -->
+                        <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
+                                <iconify-icon icon="solar:video-frame-play-horizontal-linear"
+                                    class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
+                                <div>
+                                    <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">Expert
+                                        Video Library</h4>
+                                    <p class="text-xs text-slate-600 mt-1 hidden md:block">50+ MBB mock interviews
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-slate-600 mt-2 hidden md:block">50+ videos</p>
+                                </div>
+                            </div>
+                            <div
+                                class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-blue-700 font-medium mt-2 hidden md:block">50+ videos</p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">50+ videos +
+                                        new releases</p>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Peer-to-Peer Practice -->
+                        <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
+                                <iconify-icon icon="solar:users-group-rounded-linear"
+                                    class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
+                                <div>
+                                    <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">
+                                        Peer-to-Peer Practice</h4>
+                                    <p class="text-xs text-slate-600 mt-1 hidden md:block">1000+ active members</p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:close-circle-bold"
+                                        class="text-red-500 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-slate-600 mt-2 hidden md:block">Not included</p>
+                                </div>
+                            </div>
+                            <div
+                                class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-blue-700 font-medium mt-2 hidden md:block">Unlimited
+                                        sessions</p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">Priority
+                                        matching</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Expert Workshops -->
+                        <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
+                                <iconify-icon icon="solar:calendar-linear"
+                                    class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
+                                <div>
+                                    <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">Weekly
+                                        workshops</h4>
+                                    <p class="text-xs text-slate-600 mt-1 hidden md:block">Live with MBB consultants
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:close-circle-bold"
+                                        class="text-red-500 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-slate-600 mt-2 hidden md:block">Not included</p>
+                                </div>
+                            </div>
+                            <div
+                                class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:close-circle-bold"
+                                        class="text-red-500 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-slate-600 mt-2 hidden md:block">Not included</p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">All workshops
+                                        + recordings</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Downloadable Resources -->
+                        <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
+                                <iconify-icon icon="solar:document-text-bold"
+                                    class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
+                                <div>
+                                    <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">
+                                        Downloadable Resources</h4>
+                                    <p class="text-xs text-slate-600 mt-1 hidden md:block">Templates & frameworks
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-slate-600 mt-2 hidden md:block">Basic templates</p>
+                                </div>
+                            </div>
+                            <div
+                                class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-blue-700 font-medium mt-2 hidden md:block">All resources
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">Premium
+                                        resources</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Priority Support -->
+                        <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
+                                <iconify-icon icon="solar:chat-round-line-linear"
+                                    class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
+                                <div>
+                                    <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">Support
+                                    </h4>
+                                    <p class="text-xs text-slate-600 mt-1 hidden md:block">Help when you need it</p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-slate-600 mt-2 hidden md:block">Email support</p>
+                                </div>
+                            </div>
+                            <div
+                                class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-blue-700 font-medium mt-2 hidden md:block">Email + chat
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
+                                <div class="text-center">
+                                    <iconify-icon icon="solar:check-circle-bold"
+                                        class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
+                                    <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">Priority 24/7
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <!-- Smart Drills & Exercises -->
-                    <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
-                            <iconify-icon icon="solar:calculator-minimalistic-linear"
-                                class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
-                            <div>
-                                <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">Smart
-                                    Drills & Exercises</h4>
-                                <p class="text-xs text-slate-600 mt-1 hidden md:block">400+ interactive drills
-                                </p>
-                            </div>
+                    <!-- Table Footer CTA -->
+                    <div class="grid grid-cols-4 bg-gradient-to-r from-slate-50 to-blue-50 border-t-2 border-blue-300">
+                        <div class="p-4 md:p-6 lg:p-8 border-r border-slate-200">
+                            <!-- Empty cell for alignment -->
                         </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-slate-600 mt-2 hidden md:block">Full access</p>
-                            </div>
+                        <div class="p-4 md:p-6 lg:p-8 text-center border-r border-slate-200">
+                            <button onclick="openWaitlistModal('Foundation')"
+                                class="bg-blue-600 text-white rounded-full px-4 md:px-6 py-2 md:py-3 text-xs md:text-sm font-semibold hover:bg-blue-700 transition-all shadow-lg w-full">
+                                Start Free Trial
+                            </button>
                         </div>
-                        <div
-                            class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-blue-700 font-medium mt-2 hidden md:block">Full access
-                                </p>
-                            </div>
+                        <div class="p-4 md:p-6 lg:p-8 text-center border-r border-slate-200">
+                            <button onclick="openWaitlistModal('Growth')"
+                                class="bg-blue-600 text-white rounded-full px-4 md:px-6 py-2 md:py-3 text-xs md:text-sm font-semibold hover:bg-blue-700 transition-all shadow-lg w-full">
+                                Start Free Trial
+                            </button>
                         </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">Unlimited
-                                    access</p>
-                            </div>
+                        <div class="p-4 md:p-6 lg:p-8 text-center">
+                            <button onclick="openWaitlistModal('Mastery')"
+                                class="bg-blue-600 text-white rounded-full px-4 md:px-6 py-2 md:py-3 text-xs md:text-sm font-semibold hover:bg-blue-700 transition-all shadow-lg w-full">
+                                Start Free Trial
+                            </button>
                         </div>
-                    </div>
-
-                    <!-- Expert Video Library -->
-                    <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
-                            <iconify-icon icon="solar:video-frame-play-horizontal-linear"
-                                class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
-                            <div>
-                                <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">Expert
-                                    Video Library</h4>
-                                <p class="text-xs text-slate-600 mt-1 hidden md:block">50+ MBB mock interviews
-                                </p>
-                            </div>
-                        </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-slate-600 mt-2 hidden md:block">50+ videos</p>
-                            </div>
-                        </div>
-                        <div
-                            class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-blue-700 font-medium mt-2 hidden md:block">50+ videos</p>
-                            </div>
-                        </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">50+ videos +
-                                    new releases</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Peer-to-Peer Practice -->
-                    <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
-                            <iconify-icon icon="solar:users-group-rounded-linear"
-                                class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
-                            <div>
-                                <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">
-                                    Peer-to-Peer Practice</h4>
-                                <p class="text-xs text-slate-600 mt-1 hidden md:block">1000+ active members</p>
-                            </div>
-                        </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:close-circle-bold"
-                                    class="text-red-500 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-slate-600 mt-2 hidden md:block">Not included</p>
-                            </div>
-                        </div>
-                        <div
-                            class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-blue-700 font-medium mt-2 hidden md:block">Unlimited
-                                    sessions</p>
-                            </div>
-                        </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">Priority
-                                    matching</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Live Expert Workshops -->
-                    <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
-                            <iconify-icon icon="solar:calendar-linear"
-                                class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
-                            <div>
-                                <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">Weekly
-                                    workshops</h4>
-                                <p class="text-xs text-slate-600 mt-1 hidden md:block">Live with MBB consultants
-                                </p>
-                            </div>
-                        </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:close-circle-bold"
-                                    class="text-red-500 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-slate-600 mt-2 hidden md:block">Not included</p>
-                            </div>
-                        </div>
-                        <div
-                            class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:close-circle-bold"
-                                    class="text-red-500 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-slate-600 mt-2 hidden md:block">Not included</p>
-                            </div>
-                        </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">All workshops
-                                    + recordings</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Downloadable Resources -->
-                    <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
-                            <iconify-icon icon="solar:document-text-bold"
-                                class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
-                            <div>
-                                <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">
-                                    Downloadable Resources</h4>
-                                <p class="text-xs text-slate-600 mt-1 hidden md:block">Templates & frameworks
-                                </p>
-                            </div>
-                        </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-slate-600 mt-2 hidden md:block">Basic templates</p>
-                            </div>
-                        </div>
-                        <div
-                            class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-blue-700 font-medium mt-2 hidden md:block">All resources
-                                </p>
-                            </div>
-                        </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">Premium
-                                    resources</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Priority Support -->
-                    <div class="grid grid-cols-4 hover:bg-slate-50 transition-colors">
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center gap-2 md:gap-3 border-r border-slate-200">
-                            <iconify-icon icon="solar:chat-round-line-linear"
-                                class="text-blue-600 text-lg md:text-2xl flex-shrink-0"></iconify-icon>
-                            <div>
-                                <h4 class="font-medium text-slate-900 text-xs md:text-sm lg:text-base">Support
-                                </h4>
-                                <p class="text-xs text-slate-600 mt-1 hidden md:block">Help when you need it</p>
-                            </div>
-                        </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-slate-600 mt-2 hidden md:block">Email support</p>
-                            </div>
-                        </div>
-                        <div
-                            class="p-4 md:p-6 lg:p-8 flex items-center justify-center border-r border-slate-200 bg-blue-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-blue-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-blue-700 font-medium mt-2 hidden md:block">Email + chat
-                                </p>
-                            </div>
-                        </div>
-                        <div class="p-4 md:p-6 lg:p-8 flex items-center justify-center bg-green-50/30">
-                            <div class="text-center">
-                                <iconify-icon icon="solar:check-circle-bold"
-                                    class="text-green-600 text-2xl md:text-3xl"></iconify-icon>
-                                <p class="text-xs text-green-700 font-medium mt-2 hidden md:block">Priority 24/7
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Table Footer CTA -->
-                <div class="grid grid-cols-4 bg-gradient-to-r from-slate-50 to-blue-50 border-t-2 border-blue-300">
-                    <div class="p-4 md:p-6 lg:p-8 border-r border-slate-200">
-                        <!-- Empty cell for alignment -->
-                    </div>
-                    <div class="p-4 md:p-6 lg:p-8 text-center border-r border-slate-200">
-                        <button onclick="openWaitlistModal('Foundation')"
-                            class="bg-blue-600 text-white rounded-full px-4 md:px-6 py-2 md:py-3 text-xs md:text-sm font-semibold hover:bg-blue-700 transition-all shadow-lg w-full">
-                            Start Free Trial
-                        </button>
-                    </div>
-                    <div class="p-4 md:p-6 lg:p-8 text-center border-r border-slate-200">
-                        <button onclick="openWaitlistModal('Growth')"
-                            class="bg-blue-600 text-white rounded-full px-4 md:px-6 py-2 md:py-3 text-xs md:text-sm font-semibold hover:bg-blue-700 transition-all shadow-lg w-full">
-                            Start Free Trial
-                        </button>
-                    </div>
-                    <div class="p-4 md:p-6 lg:p-8 text-center">
-                        <button onclick="openWaitlistModal('Mastery')"
-                            class="bg-blue-600 text-white rounded-full px-4 md:px-6 py-2 md:py-3 text-xs md:text-sm font-semibold hover:bg-blue-700 transition-all shadow-lg w-full">
-                            Start Free Trial
-                        </button>
                     </div>
                 </div>
             </div>
@@ -2824,6 +2866,18 @@
 
         // Global Variable for selected pricing period
         let selectedPricingPeriod = 'Monthly';
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('translate-x-full')) {
+                menu.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden';
+            } else {
+                menu.classList.add('translate-x-full');
+                document.body.style.overflow = 'auto';
+            }
+        }
 
         // Pricing Period Toggle Function
         function togglePricingPeriod(period) {
